@@ -6,11 +6,11 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const darkTheme = createTheme({
+export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      light: "#00bcd4",
+      light: "#ba68c8",
       main: "#9c27b0",
       dark: "#6d1b7b",
       contrastText: "#fff",

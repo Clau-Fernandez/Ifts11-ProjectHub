@@ -5,6 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from "react-router";
+import { useEffect, useState } from 'react';
+import { fetchDogImageUrl } from '../../services/dogApiPruebaService';
 
 
 //Esta CardData simula el response del servicio
@@ -76,6 +78,24 @@ const ActionAreaCard = ({ projectId, imageUrl, title, description }: { projectId
 
 export default function ActionAreaCardList() {
 
+  //--------------------Probando el servicio de API DOG
+  const [dogImageUrls, setDogImageUrls] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchDogImages = async () => {
+      const urls = await Promise.all(
+        cardData.map(async (_) => {
+          const imageUrl = await fetchDogImageUrl();
+          return imageUrl;
+        })
+      );
+      setDogImageUrls(urls);
+    };
+
+    fetchDogImages();
+  }, []);
+  
+  //------------------FIN
   return (
     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', padding: 2 }}>
       <Grid container spacing={2} justifyContent="center">
@@ -83,7 +103,7 @@ export default function ActionAreaCardList() {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ActionAreaCard
               projectId={card.projectId}
-              imageUrl={card.imageUrl}
+              imageUrl={dogImageUrls[index]}
               title={card.title}
               description={card.description}
             />
