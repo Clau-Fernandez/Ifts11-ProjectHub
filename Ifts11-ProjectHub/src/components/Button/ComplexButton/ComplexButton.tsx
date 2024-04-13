@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link'; 
 
 const images = [
   {
@@ -30,7 +29,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
   height: 200,
   [theme.breakpoints.down('sm')]: {
-    width: '100% !important', // Overrides inline-style
+    width: '100% !important', 
     height: 100,
   },
   '&:hover, &.Mui-focusVisible': {
@@ -96,7 +95,6 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function ButtonBaseDemo() {
   const handleClick = (href:string) => {
-    // Agrega aquí la lógica para manejar el evento onClick
     window.open(href, '_blank');
   };
   return (

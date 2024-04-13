@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from "react-router";
-import AddProjectButton from '../Button/AddProjectButton/AddProjectButton';
 
 
 //Esta CardData simula el response del servicio
