@@ -1,12 +1,12 @@
-import { Box, Chip, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchDogImageUrl } from "../../services/dogApiPruebaService";
+import { useNavigate } from "react-router";
 
 //Esta CardData simula el response del servicio
 const cardData = [
@@ -14,48 +14,42 @@ const cardData = [
     projectId: 1,
     imageUrl: "/assets/csharp.png",
     title: "Dolar$Nube",
-    description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse, empor incididunt utl.",
-    subject: "Desarrollo en la Nube",
+    members: ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+  
   },
   {
     projectId: 2,
     imageUrl: "/assets/csharp.png",
     title: "AppPeliculas",
-    description:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
-    subject: "Proyecto integrador",
+    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
   },
   {
     projectId: 3,
     imageUrl: "/assets/csharp.png",
     title: "AbonandoAndo",
-    description:
-      "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    subject: "Desarrollo en la Nube",
+    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+   
   },
   {
     projectId: 4,
     imageUrl: "/assets/csharp.png",
     title: "App de Chat",
-    description:
-      "d do eiusmod tempor incididun e irure dolor in reprehenderi ad minim ve",
-    subject: "Proyecto integrador",
+    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+
   },
   {
     projectId: 5,
     imageUrl: "/assets/csharp.png",
     title: "Proyecto 5",
-    description:
-      "Lorem id do eiusmod tempor incididunorem ipsum dolor sit amet, consectetur adipiscing eliadipiscing eli",
-    subject: "Frontend",
+    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+
   },
   {
     projectId: 6,
     imageUrl: "/assets/csharp.png",
     title: "Proyecto 6",
-    description: "Qui officia deserunt mollit anim id est laborum.",
-    subject: "Proyecto integrador",
+    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+
   },
 ];
 
@@ -63,14 +57,12 @@ const ActionAreaCard = ({
   projectId,
   imageUrl,
   title,
-  description,
-  subject,
+  members
 }: {
   projectId: number;
   imageUrl: string;
   title: string;
-  description: string;
-  subject: string;
+  members: string[];
 }) => {
   const navigate = useNavigate();
 
@@ -92,14 +84,14 @@ const ActionAreaCard = ({
             component="div"
             sx={{ color: "#af52bf", fontWeight: "bold", fontSize: 18 }}
           >
-            {title}
+            {title} 
           </Typography>
           <Typography
             variant="body2"
-            color="text.primary"
+            color="text.secondary"
             sx={{ fontSize: 12 }}
           >
-            {description}
+          {members}
           </Typography>
           <Box
             sx={{
@@ -109,7 +101,6 @@ const ActionAreaCard = ({
               margin: 1,
             }}
           >
-            <Chip label={subject} size="small" />
           </Box>
         </CardContent>
       </CardActionArea>
@@ -152,8 +143,7 @@ export default function ActionAreaCardList() {
               projectId={card.projectId}
               imageUrl={dogImageUrls[index]}
               title={card.title}
-              description={card.description}
-              subject={card.subject}
+              members={card.members}
             />
           </Grid>
         ))}
