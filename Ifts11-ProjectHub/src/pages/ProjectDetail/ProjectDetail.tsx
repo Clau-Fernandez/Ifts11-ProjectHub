@@ -7,6 +7,8 @@ import {
   IconButton,
   Container,
   Grid,
+  List,
+  ListItem
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -25,8 +27,8 @@ const mockDeDetalleDeProyecto = () => {
     subject: "Proyecto Final",
     members: ["Laura Dancoso", "Fernando Bartoli", "Brisa Sardón", "Claudia Fernandez"],
     projectUrl: "https://projecthub.arduino.cc/",
-    linkDescription:"Vistas de pantallas",
-    link: "https://www.canva.com/design/DAGBmWVwDHQ/O8QLd1UmX0a2cXBXxNE-IQ/edit"
+    linkDescription:["Vistas de pantallas","Notion","Miro" ],
+    links: ["https://www.canva.com/design/DAGBmWVwDHQ/O8QLd1UmX0a2cXBXxNE-IQ/edit", "https://www.notion.so/laudancoso/IFTS-TSDS-Final-Project-Project-Hub-ff4174fd44d6495fb5eeebb0b78c0437","https://miro.com/app/settings/team/3458764583043175261/profile/"]
   };
 };
 
@@ -47,9 +49,8 @@ const ProjectDetail = () => {
     members,
     projectUrl,
     linkDescription,
-    link
+    links
   } = projectData;
-
   return (
     <Container maxWidth="lg" sx={{ marginTop: '35px', backgroundColor: "#212121" }}>
       <Box marginBottom={1} padding={2}>
@@ -153,6 +154,24 @@ const ProjectDetail = () => {
         >
           <Grid item xs={6}>
             <h2>Links</h2>
+            <List>
+            {links.map((link, index) => (
+              <ListItem key={index}>
+                  {linkDescription[index]} 
+                <IconButton
+                  href= {link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ padding:2, width:'40px', height:'40px' }}
+                >
+                  <OpenInNewIcon  sx={{ fontSize: '20px' }} />
+                </IconButton>
+              </ListItem>
+            ))}
+            </List>
+          </Grid>
+          {/* <Grid item xs={6}>
+            <h2>Links</h2>
             {linkDescription}
             <IconButton
               href= {link}
@@ -162,7 +181,7 @@ const ProjectDetail = () => {
             >
             <OpenInNewIcon  sx={{ fontSize: '20px' }} />
              </IconButton>
-          </Grid>
+          </Grid> */}
             <Grid item xs={6}>
               <Box marginBottom={2} textAlign="right" style={{ marginBlock: "70px" }}>
                 <Tooltip title="Ver Repositorio en GitHub">  
