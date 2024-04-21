@@ -9,6 +9,7 @@ import {
   Grid,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 // Datos de muestra del proyecto
 const mockDeDetalleDeProyecto = () => {
@@ -22,6 +23,10 @@ const mockDeDetalleDeProyecto = () => {
     coverImage: "../public/assets/csharp.png",
     career: "Desarrollo de Software",
     subject: "Proyecto Final",
+    members: ["Laura Dancoso", "Fernando Bartoli", "Brisa Sardón", "Claudia Fernandez"],
+    projectUrl: "https://projecthub.arduino.cc/",
+    linkDescription:"Vistas de pantallas",
+    link: "https://www.canva.com/design/DAGBmWVwDHQ/O8QLd1UmX0a2cXBXxNE-IQ/edit"
   };
 };
 
@@ -39,65 +44,152 @@ const ProjectDetail = () => {
     coverImage,
     career,
     subject,
+    members,
+    projectUrl,
+    linkDescription,
+    link
   } = projectData;
 
   return (
-    <Container maxWidth="lg" sx={{ marginTop: "35px", backgroundColor: "#212121" }}>
-      <Box marginBottom={1} padding={4}>
-        <Typography variant="body2" gutterBottom style={{ marginBottom: '10px', display:"flex", justifyContent:"flex-end", fontSize:'18px' }}>{date} </Typography>
-        <Typography variant="h2" gutterBottom  color='primary'style = {{ borderBottom: '1px solid #9e9e9e', fontWeight: 'bold'}}>
-          {title}{projectId}
-        </Typography>
-        <Typography variant="body1" gutterBottom style={{ marginBottom: '35px' }}>
-          {description}
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Box marginBottom={1}>
-              {technologies.map((technology, index) => (
+    <Container maxWidth="lg" sx={{ marginTop: '35px', backgroundColor: "#212121" }}>
+      <Box marginBottom={1} padding={2}>
+        <Typography variant="body2" gutterBottom style={{ marginBottom: '10px', display:"flex", justifyContent:"flex-end", fontSize:'18px', color:'primary.light' }}>{date} </Typography>
+        <Box 
+          sx={{
+            borderRadius: 2,
+            bgcolor: '#353535',
+            padding:2
+          }}
+        >
+          <Typography variant="h2" gutterBottom  color='primary'style = {{ fontWeight: 'bold'}}>
+            {title}{projectId}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {description}
+          </Typography>
+          <Box display="flex" justifyContent="center" marginBottom="15px" padding='20px'>
+            <img
+              src={coverImage}
+              alt="Portada del Proyecto"
+              style={{ maxWidth: "100%" }}
+            />
+          </Box>
+        </Box>
+
+        {/* MEMBERS */}
+        <Box 
+          sx={{
+            borderRadius: 2,
+            bgcolor: '#353535',
+            marginTop:'10px',
+            padding:2
+          }}
+        >
+          <h2>Integrantes</h2>
+          {members.map((member, index) => (
                 <Chip
                   key={index}
-                  label={technology}
+                  label={member}
                   style={{ marginRight: "10px", fontSize:15, }}
                 />
-              ))}
-            </Box>
-            <Tooltip title="Ver Repositorio en GitHub">
-              <IconButton
-                href={githubRepo}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ padding: 0, width: '40px', height: '40px' }}
-              >
-                <GitHubIcon  sx={{ fontSize: '30px' }} />
-              </IconButton>
-            </Tooltip>
+          ))}
+        </Box>
+        {/* DETALLE ACADEMICO: -CARRERA-MATERIA */}
+        <Grid container spacing={0}
+          sx={{
+            borderRadius: 2,
+            bgcolor: '#353535',
+            marginTop:'10px',
+            padding:2
+          }}
+        >
+          <Grid item xs={6}>
+              <Box marginBottom={1}>
+                <h2>Carrera</h2>
+                <Chip
+                    label={career}
+                    style={{ fontSize:15}}
+                  />
+              </Box>
           </Grid>
           <Grid item xs={6}>
-            <Box marginBottom={2} textAlign="right">
-              <Chip
-                  label={subject}
-                  color="primary" 
-                  style={{ fontSize:15, fontWeight:'bold'}}
+              <Box marginBottom={2} textAlign="right">
+                <h2>Materia</h2> {/* ver ubicacion */}
+                <Chip
+                    label={subject}
+                    style={{fontSize:15}}
                 />
-            </Box>
-            <Box marginBottom={2} textAlign="right">
-              <Chip
-                  label={career}
-                  color="primary" 
-                  style={{fontSize:15, fontWeight:'bold'}}
-                />
-            </Box>
+              </Box>
           </Grid>
         </Grid>
+        {/* TECNOLOGIAS UTILIZADAS -link a repo-link a app */} 
+        <Box 
+          sx={{
+            borderRadius: 2,
+            bgcolor: '#353535',
+            marginTop:'10px',
+            padding:2
+          }}
+        >
+          <h2>Tecnlogías utilizadas</h2>
+          <Box marginBottom={1}>
+            {technologies.map((technology, index) => (
+              <Chip
+                key={index}
+                label={technology}
+                style={{ marginRight: "10px", fontSize:15 }}
+              />
+            ))}
+          </Box>
+        </Box>
+        {/* LINKS */}
+        <Grid container spacing={0}
+          sx={{
+            borderRadius: 2,
+            bgcolor: '#353535',
+            marginTop:'10px',
+            padding:2
+          }}
+        >
+          <Grid item xs={6}>
+            <h2>Links</h2>
+            {linkDescription}
+            <IconButton
+              href= {link}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ padding:3, width: '40px', height: '40px' }}
+            >
+            <OpenInNewIcon  sx={{ fontSize: '20px' }} />
+             </IconButton>
+          </Grid>
+            <Grid item xs={6}>
+              <Box marginBottom={2} textAlign="right" style={{ marginBlock: "70px" }}>
+                <Tooltip title="Ver Repositorio en GitHub">  
+                  <IconButton
+                    href={githubRepo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ padding:3, width: '40px', height: '40px' }}
+                  >
+                    <GitHubIcon  sx={{ fontSize: '30px' }} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Ver proyecto">
+                  <IconButton
+                    href={projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ padding:3, width: '40px', height: '40px' }}
+                  >
+                    <OpenInNewIcon  sx={{ fontSize: '30px' }} />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Grid>
+        </Grid>
       </Box>
-      <Box display="flex" justifyContent="center" marginBottom="15px" padding='20px'>
-        <img
-          src={coverImage}
-          alt="Portada del Proyecto"
-          style={{ maxWidth: "100%" }}
-        />
-      </Box>
+
     </Container>
   );
 };
