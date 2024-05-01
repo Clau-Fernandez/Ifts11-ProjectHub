@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 
-
 import {
   Box,
   Typography,
@@ -14,6 +13,7 @@ import {
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { Carousel } from "antd";
 
 // Datos de muestra del proyecto
 const mockDeDetalleDeProyecto = () => {
@@ -24,7 +24,11 @@ const mockDeDetalleDeProyecto = () => {
     date: "14/04/2024",
     technologies: ["React", "C#", "AWS", "SQL"],
     githubRepo: "https://github.com/Clau-Fernandez/Ifts11-ProjectHub",
-    coverImage: "../public/assets/csharp.png",
+    coverImages: [
+      "../public/assets/csharp.png",
+      "../public/assets/csharp.png",
+      "../public/assets/csharp.png",
+    ],
     career: "Desarrollo de Software",
     subject: "Proyecto Final",
     members: [
@@ -53,7 +57,7 @@ const ProjectDetail = () => {
     date,
     technologies,
     githubRepo,
-    coverImage,
+    coverImages,
     career,
     subject,
     members,
@@ -78,7 +82,7 @@ const ProjectDetail = () => {
             color: "primary.light",
           }}
         >
-          {date}{" "}
+          {date}
         </Typography>
         <Box
           sx={{
@@ -99,17 +103,24 @@ const ProjectDetail = () => {
           <Typography variant="body1" gutterBottom>
             {description}
           </Typography>
+
+          {/* PORTADA */}
           <Box
-            display="flex"
-            justifyContent="center"
-            marginBottom="15px"
-            padding="20px"
+            sx={{
+              marginTop: 5,
+              marginBottom: 2,
+            }}
           >
-            <img
-              src={coverImage}
-              alt="Portada del Proyecto"
-              style={{ maxWidth: "100%" }}
-            />
+            <Carousel autoplay>
+              {coverImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Portada ${index}`}
+                  style={{ maxWidth: "100%" }}
+                />
+              ))}
+            </Carousel>
           </Box>
         </Box>
 
@@ -125,7 +136,12 @@ const ProjectDetail = () => {
           <Typography
             variant="h5"
             component="h2"
-            sx={{ marginRight: 1, marginBottom: 2, fontWeight: "bold", color:"#9c27b0"}}
+            sx={{
+              marginRight: 1,
+              marginBottom: 2,
+              fontWeight: "bold",
+              color: "#9c27b0",
+            }}
           >
             Integrantes
           </Typography>
@@ -153,7 +169,12 @@ const ProjectDetail = () => {
               <Typography
                 variant="h5"
                 component="h2"
-                sx={{ marginRight: 1, marginBottom: 2, fontWeight: "bold", color:"#9c27b0" }}
+                sx={{
+                  marginRight: 1,
+                  marginBottom: 2,
+                  fontWeight: "bold",
+                  color: "#9c27b0",
+                }}
               >
                 Carrera
               </Typography>
@@ -165,7 +186,12 @@ const ProjectDetail = () => {
               <Typography
                 variant="h5"
                 component="h2"
-                sx={{ marginRight: 1, marginBottom: 2, fontWeight: "bold", color:"#9c27b0" }}
+                sx={{
+                  marginRight: 1,
+                  marginBottom: 2,
+                  fontWeight: "bold",
+                  color: "#9c27b0",
+                }}
               >
                 Materia
               </Typography>
@@ -185,7 +211,12 @@ const ProjectDetail = () => {
           <Typography
             variant="h5"
             component="h2"
-            sx={{ marginRight: 1, marginBottom: 2, fontWeight: "bold" , color:"#9c27b0"}}
+            sx={{
+              marginRight: 1,
+              marginBottom: 2,
+              fontWeight: "bold",
+              color: "#9c27b0",
+            }}
           >
             Tecnologías utilizadas
           </Typography>
@@ -216,7 +247,7 @@ const ProjectDetail = () => {
             <Typography
               variant="h5"
               component="h2"
-              sx={{ marginRight: 1, fontWeight: "bold", color:"#9c27b0"}}
+              sx={{ marginRight: 1, fontWeight: "bold", color: "#9c27b0" }}
             >
               Repositorio
             </Typography>
@@ -242,7 +273,7 @@ const ProjectDetail = () => {
             <Typography
               variant="h5"
               component="h2"
-              sx={{ marginRight: 1, fontWeight: "bold", color:"#9c27b0" }}
+              sx={{ marginRight: 1, fontWeight: "bold", color: "#9c27b0" }}
             >
               Proyecto
             </Typography>
@@ -270,7 +301,11 @@ const ProjectDetail = () => {
           }}
         >
           <Grid item xs={12}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold", color:"#9c27b0" }}>
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{ fontWeight: "bold", color: "#9c27b0" }}
+            >
               {" "}
               Links
             </Typography>
