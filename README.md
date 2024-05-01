@@ -4,4 +4,5 @@ Repositorio del proyecto IFTS-ProjectHub, una plataforma para gestionar y compar
 
 Instrucciones:
 1. npm install -> para instalar todas las dependencias
-2. npm run dev -> para levantar el proyecto 
+2. npm install axios -> para instalar la libreria axios
+3. npm run dev -> para levantar el proyecto 
