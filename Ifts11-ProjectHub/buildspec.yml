@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  preBuild:
+    commands:
+      - echo Instalando dependencias...
+      - npm install
+  build:
+    commands:
+      - echo Construyendo la aplicación...
+      - npm run build
+artifacts:
+  baseDirectory: build
+  files:
+    - '**/*'
+cache:
+  paths:
+    - 'node_modules/**/*'
