@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { Box, Typography, Chip, IconButton, MenuItem } from '@mui/material';
 import './AddProjectButton.style.css';
 
@@ -139,17 +140,6 @@ export default function AddProjectButton() {
           />
           <TextField
             margin="dense"
-            id="projectPurpose"
-            label="Propósito del proyecto"
-            fullWidth
-            multiline
-            rows={2}
-            required
-            inputProps={{ maxLength: 100 }}
-            style={{ marginTop: '15px' }} 
-          />
-          <TextField
-            margin="dense"
             id="fullDescription"
             label="Descripción del proyecto"
             fullWidth
@@ -160,7 +150,6 @@ export default function AddProjectButton() {
             style={{ marginTop: '15px' }} 
           />
           <TagsInput label="Integrantes" tags={members} setTags={setMembers} />
-          <TagsInput label="Tecnologías" tags={technologies} setTags={setTechnologies} />
           <Box style={{ marginTop: '15px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between' }}>
           <TextField
               select
@@ -187,6 +176,7 @@ export default function AddProjectButton() {
               <MenuItem value="Materia 4">Materia 4</MenuItem>
             </TextField>
           </Box>
+          <TagsInput label="Tecnologías" tags={technologies} setTags={setTechnologies} />
           <TextField
             margin="dense"
             id="githubRepo"
@@ -201,6 +191,35 @@ export default function AddProjectButton() {
               
             }}
           />
+          <TextField
+            margin="dense"
+            id="proyecto"
+            label="Proyecto"
+            fullWidth
+            required
+            style={{ marginTop: '10px' }} 
+            InputProps={{
+              startAdornment: (
+                <OpenInNewIcon style={{ marginRight: '8px' }} />
+              ),
+              
+            }}
+          />  
+          <TextField
+            margin="dense"
+            id="links"
+            label="Links"
+            fullWidth
+            required
+            style={{ marginTop: '10px' }} 
+            InputProps={{
+              startAdornment: (
+                <OpenInNewIcon style={{ marginRight: '8px' }} />
+              ),
+              
+            }}
+            
+          /> 
           <ImageUploader />
         </DialogContent>
         <DialogActions>
