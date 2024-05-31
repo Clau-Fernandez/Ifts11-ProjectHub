@@ -4,51 +4,51 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { useEffect, useState } from "react";
-import { fetchDogImageUrl } from "../../services/dogApiPruebaService";
+//import { useEffect, useState } from "react";
+//import { fetchDogImageUrl } from "../../services/dogApiPruebaService";
 import { useNavigate } from "react-router";
 
 //Esta CardData simula el response del servicio
 const cardData = [
   {
     projectId: 1,
-    imageUrl: "/assets/csharp.png",
+    imageUrl: "src/assets/$.jpg",
     title: "Dolar$Nube",
-    members: ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+    members: ["Brisa Sardón, ", "Fernando Bartoli, ", "Laura Dancoso, ", "Claudia Fernandez"]
   
   },
   {
     projectId: 2,
-    imageUrl: "/assets/csharp.png",
+    imageUrl: "src/assets/peliculas.png",
     title: "AppPeliculas",
-    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+    members:  ["Laura Dancoso, ", "Brisa Sardón, ", "Claudia Fernandez, ", "Fernando Bartoli"]
   },
   {
     projectId: 3,
-    imageUrl: "/assets/csharp.png",
+    imageUrl: "src/assets/Abonando.png",
     title: "AbonandoAndo",
     members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
    
   },
   {
     projectId: 4,
-    imageUrl: "/assets/csharp.png",
+    imageUrl: "src/assets/PlayerApp.png",
     title: "App de Chat",
-    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+    members:  ["Fernando Bartoli ", "Laura Dancoso, ", "Brisa Sardón, ", "Claudia Fernandez"]
 
   },
   {
     projectId: 5,
-    imageUrl: "/assets/csharp.png",
+    imageUrl: "src/assets/RoyalTech.png",
     title: "Proyecto 5",
-    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+    members:  ["Brisa Sardón, ", "Claudia Fernandez, ", "Laura Dancoso, ", "Fernando Bartoli"]
 
   },
   {
     projectId: 6,
-    imageUrl: "/assets/csharp.png",
-    title: "Proyecto 6",
-    members:  ["Laura Dancoso, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Claudia Fernandez"]
+    imageUrl: "src/assets/petshop.png",
+    title: "PetShop-PawPaw",
+    members:  ["Claudia Fernandez, ", "Fernando Bartoli, ", "Brisa Sardón, ", "Laura Dancoso"]
 
   },
 ];
@@ -110,21 +110,21 @@ const ActionAreaCard = ({
 
 export default function ActionAreaCardList() {
   //--------------------Probando el servicio de API DOG
-  const [dogImageUrls, setDogImageUrls] = useState<string[]>([]);
+  //const [dogImageUrls, setDogImageUrls] = useState<string[]>([]);
 
-  useEffect(() => {
-    const fetchDogImages = async () => {
-      const urls = await Promise.all(
-        cardData.map(async (_) => {
-          const imageUrl = await fetchDogImageUrl();
-          return imageUrl;
-        })
-      );
-      setDogImageUrls(urls);
-    };
+  // useEffect(() => {
+  //   const fetchDogImages = async () => {
+  //     const urls = await Promise.all(
+  //       cardData.map(async (_) => {
+  //         const imageUrl = await fetchDogImageUrl();
+  //         return imageUrl;
+  //       })
+  //     );
+  //     setDogImageUrls(urls);
+  //   };
 
-    fetchDogImages();
-  }, []);
+  //   fetchDogImages();
+  // }, []);
 
   //------------------FIN
   return (
@@ -141,7 +141,7 @@ export default function ActionAreaCardList() {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ActionAreaCard
               projectId={card.projectId}
-              imageUrl={dogImageUrls[index]}
+              imageUrl={card.imageUrl}
               title={card.title}
               members={card.members}
             />
