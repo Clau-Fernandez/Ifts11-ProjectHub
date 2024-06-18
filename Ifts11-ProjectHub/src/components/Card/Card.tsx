@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Tooltip } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,6 +7,8 @@ import { CardActionArea } from "@mui/material";
 //import { useEffect, useState } from "react";
 //import { fetchDogImageUrl } from "../../services/dogApiPruebaService";
 import { useNavigate } from "react-router";
+import { EditIcon } from "../Icons/Icons";
+import { useAuth } from "../../context/AuthContext";
 
 //Esta CardData simula el response del servicio
 const cardData = [
@@ -57,12 +59,14 @@ const ActionAreaCard = ({
   projectId,
   imageUrl,
   title,
-  members
+  members,
+  isAuthenticated
 }: {
   projectId: number;
   imageUrl: string;
   title: string;
   members: string[];
+  isAuthenticated: boolean;
 }) => {
   const navigate = useNavigate();
 
@@ -93,6 +97,8 @@ const ActionAreaCard = ({
           >
           {members}
           </Typography>
+          {isAuthenticated && (
+            <Tooltip title="Editar proyecto">
           <Box
             sx={{
               position: "absolute",
@@ -101,7 +107,10 @@ const ActionAreaCard = ({
               margin: 1,
             }}
           >
+          <EditIcon></EditIcon>
           </Box>
+          </Tooltip>
+         )}
         </CardContent>
       </CardActionArea>
     </Card>
@@ -109,6 +118,7 @@ const ActionAreaCard = ({
 };
 
 export default function ActionAreaCardList() {
+  const { isAuthenticated } = useAuth();
   //--------------------Probando el servicio de API DOG
   //const [dogImageUrls, setDogImageUrls] = useState<string[]>([]);
 
@@ -144,6 +154,7 @@ export default function ActionAreaCardList() {
               imageUrl={card.imageUrl}
               title={card.title}
               members={card.members}
+              isAuthenticated={isAuthenticated}
             />
           </Grid>
         ))}

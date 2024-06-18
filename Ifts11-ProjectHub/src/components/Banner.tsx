@@ -1,7 +1,13 @@
 import banner from "../assets/banner.png";
-//import bannerDos from "../assets/banner2.png";
+import { useAuth } from "../context/AuthContext";
 
 const Banner = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return null; // No se muestra el banner en el BackOffice
+  }
+
   return (
     <div
       style={{
@@ -9,18 +15,18 @@ const Banner = () => {
         width: "100%",
         marginBottom: "10px",
         justifyContent: "space-evenly",
-        padding: "15px"
+        padding: "15px",
       }}
     >
-      {/* <img
-        src={bannerDos}
-        alt="bannerDos"
-        style={{ width: "40%", height: "auto", objectFit: "contain", borderRadius: "10px"  }}
-      /> */}
       <img
         src={banner}
         alt="banner"
-        style={{ width: "85%", height: "auto", objectFit: "contain", borderRadius: "10px"  }}
+        style={{
+          width: "85%",
+          height: "auto",
+          objectFit: "contain",
+          borderRadius: "10px",
+        }}
       />
     </div>
   );

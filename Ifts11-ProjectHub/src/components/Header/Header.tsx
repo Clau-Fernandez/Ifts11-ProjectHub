@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Tooltip } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
-import ProjectHubIcon from "../Icons/Icons";
+import {LoginIcon, LogoutIcon, ProjectHubIcon} from "../Icons/Icons";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -41,21 +41,27 @@ const Header = () => {
         </Typography>
         {location.pathname !== "/login" &&
           (isAuthenticated ? (
+            <Tooltip title="Cerrar sesión">
             <Button
               variant="contained"
               sx={{ fontSize: 15, fontWeight: "bold" }}
               onClick={handleLogout}
-            >
-              Cerrar sesión
+              size="small"
+              >
+              <LogoutIcon></LogoutIcon>
             </Button>
+            </Tooltip>
           ) : (
+            <Tooltip title="Iniciar sesión">
             <Button
               variant="contained"
               sx={{ fontSize: 15, fontWeight: "bold" }}
               onClick={() => navigate("/login")}
+              size="small"
             >
-              Login
+              <LoginIcon></LoginIcon>
             </Button>
+            </Tooltip>
           ))}
       </Toolbar>
     </AppBar>
