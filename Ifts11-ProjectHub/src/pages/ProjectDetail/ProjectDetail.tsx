@@ -29,6 +29,7 @@ const mockDeDetalleDeProyecto = () => {
       "../public/assets/csharp.png",
       "../public/assets/csharp.png",
     ],
+    teacher: "Leandro Rodrigo San Roman",
     career: "Desarrollo de Software",
     subject: "Proyecto Final",
     members: [
@@ -58,6 +59,7 @@ const ProjectDetail = () => {
     technologies,
     githubRepo,
     coverImages,
+    teacher,
     career,
     subject,
     members,
@@ -66,24 +68,8 @@ const ProjectDetail = () => {
     links,
   } = projectData;
   return (
-    <Container
-      maxWidth="lg"
-      sx={{ marginTop: "35px", backgroundColor: "#212121" }}
-    >
+    <Container maxWidth="lg" sx={{ marginTop: "35px" }}>
       <Box marginBottom={1} padding={2}>
-        <Typography
-          variant="body2"
-          gutterBottom
-          style={{
-            marginBottom: "10px",
-            display: "flex",
-            justifyContent: "flex-end",
-            fontSize: "18px",
-            color: "primary.light",
-          }}
-        >
-          {date}
-        </Typography>
         <Box
           sx={{
             borderRadius: 2,
@@ -91,6 +77,19 @@ const ProjectDetail = () => {
             padding: 2,
           }}
         >
+          <Typography
+            variant="body2"
+            gutterBottom
+            style={{
+              marginBottom: "10px",
+              display: "flex",
+              justifyContent: "flex-end",
+              fontSize: "18px",
+              color: "primary.light",
+            }}
+          >
+            {date}
+          </Typography>
           <Typography
             variant="h2"
             gutterBottom
@@ -153,10 +152,8 @@ const ProjectDetail = () => {
             />
           ))}
         </Box>
-        {/* DETALLE ACADEMICO: -CARRERA-MATERIA */}
-        <Grid
-          container
-          spacing={0}
+        {/* DOCENTE*/}
+        <Box
           sx={{
             borderRadius: 2,
             bgcolor: "#353535",
@@ -164,41 +161,68 @@ const ProjectDetail = () => {
             padding: 2,
           }}
         >
-          <Grid item xs={6}>
-            <Box marginBottom={1}>
-              <Typography
-                variant="h5"
-                component="h2"
-                sx={{
-                  marginRight: 1,
-                  marginBottom: 2,
-                  fontWeight: "bold",
-                  color: "#9c27b0",
-                }}
-              >
-                Carrera
-              </Typography>
-              <Chip label={career} style={{ fontSize: 15 }} />
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box marginBottom={2} textAlign="right">
-              <Typography
-                variant="h5"
-                component="h2"
-                sx={{
-                  marginRight: 1,
-                  marginBottom: 2,
-                  fontWeight: "bold",
-                  color: "#9c27b0",
-                }}
-              >
-                Materia
-              </Typography>
-              <Chip label={subject} style={{ fontSize: 15 }} />
-            </Box>
-          </Grid>
-        </Grid>
+          <Typography
+            variant="h5"
+            component="h2"
+            sx={{
+              marginRight: 1,
+              marginBottom: 2,
+              fontWeight: "bold",
+              color: "#9c27b0",
+            }}
+          >
+            Docente
+          </Typography>
+          <Chip label={teacher} style={{ fontSize: 15 }} />
+        </Box>
+        {/* DETALLE ACADEMICO: -CARRERA-MATERIA */}
+
+        <Box
+          sx={{
+            borderRadius: 2,
+            bgcolor: "#353535",
+            marginTop: "10px",
+            padding: 2,
+          }}
+        >
+          <Typography
+            variant="h5"
+            component="h2"
+            sx={{
+              marginRight: 1,
+              marginBottom: 2,
+              fontWeight: "bold",
+              color: "#9c27b0",
+            }}
+          >
+            Materia
+          </Typography>
+          <Chip label={subject} style={{ fontSize: 15 }} />
+        </Box>
+
+        <Box
+          sx={{
+            borderRadius: 2,
+            bgcolor: "#353535",
+            marginTop: "10px",
+            padding: 2,
+          }}
+        >
+          <Typography
+            variant="h5"
+            component="h2"
+            sx={{
+              marginRight: 1,
+              marginBottom: 2,
+              fontWeight: "bold",
+              color: "#9c27b0",
+            }}
+          >
+            Carrera
+          </Typography>
+          <Chip label={career} style={{ fontSize: 15 }} />
+        </Box>
+
         {/* TECNOLOGIAS UTILIZADAS -link a repo-link a app */}
         <Box
           sx={{
