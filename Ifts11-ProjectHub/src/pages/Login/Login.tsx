@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, TextField, Button, Box } from "@mui/material";
+import { Container, TextField, Button, Box, Typography } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
 import logo from "../../assets/ifts11-logo.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = () => {
-    // Lógica de autenticación... algun día
-    login(username, password);
-    navigate("/");
+  const handleLogin = async () => {
+    try {
+      await login(username, password); 
+      navigate("/"); 
+    } catch (error) {
+      setError("Usuario o contraseña incorrectos. Por favor, inténtelo nuevamente.");
+    }
   };
 
   return (
@@ -64,6 +68,11 @@ const Login = () => {
         >
           Acceder
         </Button>
+        {error && ( 
+          <Typography variant="body1" color="error" sx={{ marginTop: 2 }}>
+            {error}
+          </Typography>
+        )}
       </Box>
     </Container>
   );

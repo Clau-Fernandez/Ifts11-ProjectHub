@@ -13,9 +13,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = (username: string , password: string) => {
-    // Aquí implementas la lógica de autenticación
-    // Si la autenticación es exitosa:
-    setIsAuthenticated(true);
+
+    if (username === 'admin' && password === 'admin') {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      throw new Error('Credenciales incorrectas. Acceso denegado.');
+    }
   };
 
   const logout = () => {
