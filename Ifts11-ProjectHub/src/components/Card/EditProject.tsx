@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { Box, Typography, Chip, IconButton, MenuItem } from '@mui/material';
+import { darkTheme } from '../../App';
 
 
 // Componente TagsInput para los integrantes y las tecnologías
@@ -77,7 +78,7 @@ const ImageUploader = ({ selectedImage, setSelectedImage }: { selectedImage: str
         onChange={handleImageChange}
       />
       <label htmlFor="image-upload">
-        <Button variant="contained" component="span" style={{ marginTop: '5px' }} >Cargar portada</Button>
+        <Button variant="outlined" component="span" style={{ marginTop: '5px' }} >Cargar portada</Button>
       </label>
       {selectedImage && (
         <img src={selectedImage} alt="Imagen seleccionada" style={{ marginTop: '25px', maxWidth: '100%' }} />
@@ -137,9 +138,9 @@ const EditProject: React.FC<EditProjectProps> = ({ open, handleClose, projectDat
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle style={{ borderBottom: '1px solid #9e9e9e' }}>
-        Editar Proyecto
-        <IconButton onClick={handleClose} style={{ position: 'absolute', right: '8px', top: '8px' }}>
+      <DialogTitle style = {{ borderBottom: '1px solid #00897b', color: darkTheme.palette.primary.light, fontWeight: "bold" }}>
+        EDITAR PROYECTO
+        <IconButton onClick={handleClose}  style={{ position: 'absolute', right: '8px', top: '8px', color: darkTheme.palette.primary.light }}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -243,7 +244,7 @@ const EditProject: React.FC<EditProjectProps> = ({ open, handleClose, projectDat
         <ImageUploader selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleSaveProject} style={{ color: '#ba68c8' }}>Guardar Proyecto</Button>
+        <Button variant="contained" onClick={handleSaveProject}>Guardar Proyecto</Button>
       </DialogActions>
     </Dialog>
   );

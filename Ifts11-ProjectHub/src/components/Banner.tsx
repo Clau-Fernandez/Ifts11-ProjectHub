@@ -1,5 +1,6 @@
 import banner from "../assets/banner.png";
 import { useAuth } from "../context/AuthContext";
+import "./Banner.style.css"; 
 
 const Banner = () => {
   const { isAuthenticated } = useAuth();
@@ -21,6 +22,7 @@ const Banner = () => {
       <img
         src={banner}
         alt="banner"
+        className="banner-image"
         style={{
           width: "85%",
           height: "auto",

@@ -14,6 +14,7 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { Carousel } from "antd";
+import { darkTheme } from "../../App";
 
 // Datos de muestra del proyecto
 const mockDeDetalleDeProyecto = () => {
@@ -85,13 +86,13 @@ const ProjectDetail = () => {
               display: "flex",
               justifyContent: "flex-end",
               fontSize: "18px",
-              color: "primary.light",
+              color: "#fff",
             }}
           >
             {date}
           </Typography>
           <Typography
-            variant="h2"
+            variant="h3"
             gutterBottom
             color="primary"
             style={{ fontWeight: "bold" }}
@@ -139,7 +140,7 @@ const ProjectDetail = () => {
               marginRight: 1,
               marginBottom: 2,
               fontWeight: "bold",
-              color: "#9c27b0",
+              color: darkTheme.palette.primary.light,
             }}
           >
             Integrantes
@@ -168,7 +169,7 @@ const ProjectDetail = () => {
               marginRight: 1,
               marginBottom: 2,
               fontWeight: "bold",
-              color: "#9c27b0",
+              color: darkTheme.palette.primary.light,
             }}
           >
             Docente
@@ -192,7 +193,7 @@ const ProjectDetail = () => {
               marginRight: 1,
               marginBottom: 2,
               fontWeight: "bold",
-              color: "#9c27b0",
+              color: darkTheme.palette.primary.light,
             }}
           >
             Materia
@@ -215,7 +216,7 @@ const ProjectDetail = () => {
               marginRight: 1,
               marginBottom: 2,
               fontWeight: "bold",
-              color: "#9c27b0",
+              color: darkTheme.palette.primary.light,
             }}
           >
             Carrera
@@ -239,7 +240,7 @@ const ProjectDetail = () => {
               marginRight: 1,
               marginBottom: 2,
               fontWeight: "bold",
-              color: "#9c27b0",
+              color: darkTheme.palette.primary.light,
             }}
           >
             Tecnologías utilizadas
@@ -271,7 +272,7 @@ const ProjectDetail = () => {
             <Typography
               variant="h5"
               component="h2"
-              sx={{ marginRight: 1, fontWeight: "bold", color: "#9c27b0" }}
+              sx={{ marginRight: 1, fontWeight: "bold",  color: darkTheme.palette.primary.light }}
             >
               Repositorio
             </Typography>
@@ -297,7 +298,7 @@ const ProjectDetail = () => {
             <Typography
               variant="h5"
               component="h2"
-              sx={{ marginRight: 1, fontWeight: "bold", color: "#9c27b0" }}
+              sx={{ marginRight: 1, fontWeight: "bold",  color: darkTheme.palette.primary.light }}
             >
               Proyecto
             </Typography>
@@ -328,7 +329,7 @@ const ProjectDetail = () => {
             <Typography
               variant="h5"
               gutterBottom
-              sx={{ fontWeight: "bold", color: "#9c27b0" }}
+              sx={{ fontWeight: "bold",  color: darkTheme.palette.primary.light }}
             >
               {" "}
               Links

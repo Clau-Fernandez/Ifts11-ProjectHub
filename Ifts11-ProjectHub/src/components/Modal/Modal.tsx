@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { darkTheme } from '../../App';
 
 interface ResponsiveDialogProps {
   open: boolean;
@@ -55,21 +56,21 @@ const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({ open, onClose, onCo
       fullScreen={fullScreen}
       open={open}
       onClose={onClose}
-      aria-labelledby="responsive-dialog-title"
+      aria-labelledby="dialog-title"
     >
-      <DialogTitle id="responsive-dialog-title">
+      <DialogTitle id="dialog-title" style = {{ color: darkTheme.palette.primary.light }}>
         {title}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        <DialogContentText marginTop={1}>
           {content}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose}>
+        <Button variant="outlined" onClick={onClose}>
           Cancelar
         </Button>
-        <Button onClick={onConfirm} autoFocus>
+        <Button variant="contained" onClick={onConfirm} >
           {confirmText}
         </Button>
       </DialogActions>

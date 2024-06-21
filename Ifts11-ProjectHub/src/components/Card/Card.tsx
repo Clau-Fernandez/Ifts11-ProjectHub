@@ -10,6 +10,8 @@ import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import EditProject from "./EditProject";
 import ResponsiveDialog from "../Modal/Modal";
+import { darkTheme } from "../../App";
+import "./Card.styles.css"
 
 const cardData = [
   {
@@ -80,7 +82,6 @@ const cardData = [
   },
 ];
 
-
 const ActionAreaCard = ({
   projectId,
   imageUrl,
@@ -109,7 +110,7 @@ const ActionAreaCard = ({
       imageUrl,
       title,
       members,
-      description: "",  // Asegúrate de agregar todos los campos necesarios aquí
+      description: "",
       technologies: [],
       career: "",
       subject: "",
@@ -139,31 +140,73 @@ const ActionAreaCard = ({
 
   const handleDeleteProject = () => {
     console.log("Proyecto eliminado: ", projectId);
-    // Aquí puedes añadir la lógica para eliminar el proyecto
+    //Lógica para eliminar proyecto ...
     handleDeleteDialogClose();
   };
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, marginTop: 2 }} onClick={handleGoToProjectDetail}>
+      <Card
+        sx={{ maxWidth: 345, marginTop: 2 }}
+        onClick={handleGoToProjectDetail}
+      >
         <CardActionArea>
-          <CardMedia component="img" height="200" image={imageUrl} alt={title} />
+          <CardMedia
+            component="img"
+            height="200"
+            image={imageUrl}
+            alt={title}
+          />
           <CardContent sx={{ height: 120 }}>
-            <Typography gutterBottom variant="h5" component="div" sx={{ color: "#af52bf", fontWeight: "bold", fontSize: 18 }}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{
+                color: darkTheme.palette.primary.light,
+                fontWeight: "bold",
+                fontSize: 18,
+              }}
+            >
               {title}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ fontSize: 12 }}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontSize: 12 }}
+            >
               {members}
             </Typography>
             {isAuthenticated && (
-              <Box sx={{ position: "absolute", bottom: 0, right: 0, margin: 1, display: "flex", gap: 1 }}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  margin: 1,
+                  display: "flex",
+                  gap: 1,
+                }}
+              >
                 <Tooltip title="Editar proyecto">
-                  <Box onClick={(e) => { e.stopPropagation(); handleEditDialogOpen(); }}>
+                  <Box
+                    className="edit-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleEditDialogOpen();
+                    }}
+                  >
                     <EditIcon />
                   </Box>
                 </Tooltip>
                 <Tooltip title="Eliminar proyecto">
-                  <Box onClick={(e) => { e.stopPropagation(); handleDeleteDialogOpen(); }}>
+                  <Box
+                    className="delete-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteDialogOpen();
+                    }}
+                  >
                     <DeleteIcon />
                   </Box>
                 </Tooltip>
@@ -194,7 +237,14 @@ export default function ActionAreaCardList() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center", padding: 2 }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        display: "flex",
+        justifyContent: "center",
+        padding: 2,
+      }}
+    >
       <Grid container spacing={2} justifyContent="center">
         {cardData.map((card, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>

@@ -1,16 +1,17 @@
-import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
-import AddIcon from '@mui/icons-material/Add';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import AddIcon from "@mui/icons-material/Add";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { Box, Typography, Chip, IconButton, MenuItem } from '@mui/material';
-import './AddProjectButton.style.css';
+import { Box, Typography, Chip, IconButton, MenuItem } from "@mui/material";
+import "./AddProjectButton.style.css";
+import { darkTheme } from "../../../App";
 
 // Componente TagsInput para los integrantes y las tecnologías
 interface TagsInputProps {
@@ -20,29 +21,33 @@ interface TagsInputProps {
 }
 
 const TagsInput: React.FC<TagsInputProps> = ({ label, tags, setTags }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleAddTag = () => {
-    if (inputValue.trim() !== '') {
+    if (inputValue.trim() !== "") {
       setTags([...tags, inputValue]);
-      setInputValue('');
+      setInputValue("");
     }
   };
 
   const handleDeleteTag = (tagToDelete: string) => {
-    setTags(tags.filter(tag => tag !== tagToDelete));
+    setTags(tags.filter((tag) => tag !== tagToDelete));
   };
 
   return (
     <Box marginBottom={2} marginTop={2}>
-      <Typography variant="body1" gutterBottom>{label}</Typography>
+      <Typography variant="body1" gutterBottom>
+        {label}
+      </Typography>
       <TextField
         fullWidth
         label={`Agregar ${label}`}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={(e) => { if (e.key === 'Enter') handleAddTag() }}
-        style={{ marginTop: '5px' }} 
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleAddTag();
+        }}
+        style={{ marginTop: "5px" }}
       />
       <Box>
         {tags.map((tag, index) => (
@@ -50,7 +55,7 @@ const TagsInput: React.FC<TagsInputProps> = ({ label, tags, setTags }) => {
             key={index}
             label={tag}
             onDelete={() => handleDeleteTag(tag)}
-            style={{ marginRight: '8px', marginTop: '4px'  }}
+            style={{ marginRight: "8px", marginTop: "4px" }}
           />
         ))}
       </Box>
@@ -75,14 +80,24 @@ const ImageUploader = () => {
         accept="image/*"
         id="image-upload"
         type="file"
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         onChange={handleImageChange}
       />
       <label htmlFor="image-upload">
-        <Button variant="contained" component="span" style={{ marginTop: '5px' }} >Cargar portada</Button>
+        <Button
+          variant="outlined"
+          component="span"
+          style={{ marginTop: "5px" }}
+        >
+          Cargar portada
+        </Button>
       </label>
       {selectedImage && (
-        <img src={selectedImage} alt="Imagen seleccionada" style={{ marginTop: '25px', maxWidth: '100%' }} />
+        <img
+          src={selectedImage}
+          alt="Imagen seleccionada"
+          style={{ marginTop: "25px", maxWidth: "100%" }}
+        />
       )}
     </Box>
   );
@@ -92,8 +107,8 @@ export default function AddProjectButton() {
   const [open, setOpen] = useState(false);
   const [members, setMembers] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
-  const [career, setCareer] = useState<string>('');
-  const [subject, setSubject] = useState<string>('');
+  const [career, setCareer] = useState<string>("");
+  const [subject, setSubject] = useState<string>("");
 
   const handleOpenForm = () => {
     setOpen(true);
@@ -105,7 +120,7 @@ export default function AddProjectButton() {
 
   const handleSaveProject = () => {
     // Aca va la magia para manejar el envío del formulario xD
-    handleCloseForm(); 
+    handleCloseForm();
   };
 
   return (
@@ -116,19 +131,34 @@ export default function AddProjectButton() {
         onClick={handleOpenForm}
         sx={{
           marginTop: 2,
-          marginLeft: 2
+          marginLeft: 2,
+          color: darkTheme.palette.primary.light,
         }}
       >
         Agregar Proyecto
       </Button>
-      <Dialog open={open} onClose={handleCloseForm} fullWidth maxWidth="md" >
-        <DialogTitle style = {{ borderBottom: '1px solid #9e9e9e'}}>
-          Agregar Proyecto
-          <IconButton onClick={handleCloseForm} style={{ position: 'absolute', right: '8px', top: '8px' }}>
-          <CloseIcon />
+      <Dialog open={open} onClose={handleCloseForm} fullWidth maxWidth="md">
+        <DialogTitle
+          style={{
+            borderBottom: "1px solid #00897b",
+            color: darkTheme.palette.primary.light,
+            fontWeight: "bold",
+          }}
+        >
+          AGREGAR PROYECTO
+          <IconButton
+            onClick={handleCloseForm}
+            style={{
+              position: "absolute",
+              right: "8px",
+              top: "8px",
+              color: darkTheme.palette.primary.light,
+            }}
+          >
+            <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent >
+        <DialogContent>
           <TextField
             autoFocus
             margin="dense"
@@ -136,7 +166,7 @@ export default function AddProjectButton() {
             label="Título del proyecto"
             fullWidth
             required
-            style={{ marginTop: '20px' }} 
+            style={{ marginTop: "20px" }}
           />
           <TextField
             margin="dense"
@@ -147,20 +177,26 @@ export default function AddProjectButton() {
             rows={4}
             required
             inputProps={{ maxLength: 1000 }}
-            style={{ marginTop: '15px' }} 
+            style={{ marginTop: "15px" }}
           />
           <TagsInput label="Integrantes" tags={members} setTags={setMembers} />
-          <Box style={{ marginTop: '15px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between' }}>
-          <TextField
+          <Box
+            style={{
+              marginTop: "15px",
+              marginBottom: "20px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <TextField
               select
               label="Carrera"
               value={career}
               onChange={(e) => setCareer(e.target.value)}
               fullWidth
-              style={{ width: '45%' }}
+              style={{ width: "45%" }}
             >
               <MenuItem value="Career 1">Carrera 1</MenuItem>
-
             </TextField>
             <TextField
               select
@@ -168,7 +204,7 @@ export default function AddProjectButton() {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               fullWidth
-              style={{ width: '45%' }}
+              style={{ width: "45%" }}
             >
               <MenuItem value="Materia 1">Materia 1</MenuItem>
               <MenuItem value="Materia 2">Materia 2</MenuItem>
@@ -176,19 +212,20 @@ export default function AddProjectButton() {
               <MenuItem value="Materia 4">Materia 4</MenuItem>
             </TextField>
           </Box>
-          <TagsInput label="Tecnologías" tags={technologies} setTags={setTechnologies} />
+          <TagsInput
+            label="Tecnologías"
+            tags={technologies}
+            setTags={setTechnologies}
+          />
           <TextField
             margin="dense"
             id="githubRepo"
             label="Link al Repositorio de Github"
             fullWidth
             required
-            style={{ marginTop: '10px' }} 
+            style={{ marginTop: "10px" }}
             InputProps={{
-              startAdornment: (
-                <GitHubIcon style={{ marginRight: '8px' }} />
-              ),
-              
+              startAdornment: <GitHubIcon style={{ marginRight: "8px" }} />,
             }}
           />
           <TextField
@@ -197,33 +234,28 @@ export default function AddProjectButton() {
             label="Proyecto"
             fullWidth
             required
-            style={{ marginTop: '10px' }} 
+            style={{ marginTop: "10px" }}
             InputProps={{
-              startAdornment: (
-                <OpenInNewIcon style={{ marginRight: '8px' }} />
-              ),
-              
+              startAdornment: <OpenInNewIcon style={{ marginRight: "8px" }} />,
             }}
-          />  
+          />
           <TextField
             margin="dense"
             id="links"
             label="Links"
             fullWidth
             required
-            style={{ marginTop: '10px' }} 
+            style={{ marginTop: "10px" }}
             InputProps={{
-              startAdornment: (
-                <OpenInNewIcon style={{ marginRight: '8px' }} />
-              ),
-              
+              startAdornment: <OpenInNewIcon style={{ marginRight: "8px" }} />,
             }}
-            
-          /> 
+          />
           <ImageUploader />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSaveProject} style={{ color: '#ba68c8' }}  >Guardar Proyecto</Button>
+          <Button variant="contained" onClick={handleSaveProject}>
+            Guardar Proyecto
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
